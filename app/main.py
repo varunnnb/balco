@@ -6,9 +6,11 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-import os
 
-load_dotenv()
+current_dir = Path(__file__).resolve().parent
+project_root = current_dir.parent
+
+load_dotenv(project_root/".env")
 
 from collections import OrderedDict
 
@@ -31,18 +33,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-current_dir = Path(__file__).resolve().parent
-
-project_root = current_dir.parent
-
-file_path = project_root/"data"/"processed"/"departments_cleaned.json"
+data_path = project_root/"data"/"processed"/"departments_cleaned.json"
 
 # load data (only for listing departments)
-with open(file_path, encoding="utf-8") as f:
+with open(data_path, encoding="utf-8") as f:
     data = json.load(f)
 
 # ✅ connect to Chroma DB
-client = chromadb.PersistentClient(path="./chroma_db")
+chroma_path = project_root/"chroma_db"
+client = chromadb.PersistentClient(path=chroma_path)
 collection = client.get_or_create_collection(name="departments")
 
 
@@ -59,7 +58,7 @@ Rules:
 - Answer clearly and briefly
 - Use ONLY the provided context
 - Do NOT assume anything
-- If answer is not found, say "I don't have that information
+- If answer is not found, say "I don't have that information"
 - Answer in 4-5 lines maximum"
 
 Context:
