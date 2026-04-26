@@ -3,6 +3,7 @@ import json
 import chromadb
 from groq import Groq
 import os
+from pathlib import Path
 
 from dotenv import load_dotenv
 import os
@@ -30,8 +31,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+current_dir = Path(__file__).resolve().parent
+
+project_root = current_dir.parent
+
+file_path = project_root/"data"/"processed"/"departments_cleaned.json"
+
 # load data (only for listing departments)
-with open("departments_cleaned.json", encoding="utf-8") as f:
+with open(file_path, encoding="utf-8") as f:
     data = json.load(f)
 
 # ✅ connect to Chroma DB
