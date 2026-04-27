@@ -131,9 +131,7 @@
         "Senior Resident, Rajiv Gandhi Cancer Institute, New Delhi",
         "Senior Resident, Cancer Hospital, NSCB Medical College, Jabalpur, Madhya Pradesh"
       ],
-      "areas_of_interest": [
-        "Precision Radiotherapy techniques such as Rapid Arc, IGRT, IMRT, SRS/SRT/SBRT and Brachytherapy"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Diwakar Pandey",
@@ -161,9 +159,7 @@
         "Ad-hoc Assistant Professor, Surgical Oncology, Tata Memorial Hospital, Mumbai",
         "Senior Registrar, Surgical Oncology, Bhopal Memorial Hospital and Research Centre, Bhopal"
       ],
-      "areas_of_interest": [
-        "Surgical Oncology with special interest in Minimally invasive Gastrointestinal cancers (Stomach, Bowel, Hepatopancreaticobiliary tract and Peritoneal Surface malignancies requiring Cytoreductive surgeries and HIPEC ), Thoracic cancers (Esophagus, Lung and Mediastinal Tumours), Genitourinary cancers (Kidney, Urinary bladder, Prostate, Penile and Testicular cancers) and Cancers of Women (Breast, Cervical, Endometrial and other cancers of female genital tract)"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Deba Dulal Biswal",
@@ -182,24 +178,16 @@
         "Fellow in Clinical Haematology, Tata Medical Centre, Kolkata, West Bengal",
         "Assistant Professor in the Department of Medicine,Hi-tech Medical College, Bhubaneshwar, Odisha"
       ],
-      "areas_of_interest": [
-        "All types of cancers in Adults, Paediatric population including Solid and Blood"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Jay Kumar Rai",
       "profile_url": "https://www.balcomedicalcentre.com/doctors/dr-jay-kumar-rai",
       "position": "Clinical Lead and Senior Consultant, Nuclear Medicine",
       "qualification": "MBBS, DNB (Nuclear Medicine), MNAMS",
-      "education_training": [
-        "• MBBS from N.S.C.B. Medical College, Jabalur, Madhya Pradesh• DNB from Amrita Institute of Medical Sciences & Research Centre, Kochi, Kerala• Fellow of European Board of Nuclear Medicine, Hamburg, Germany• Member of multiple scientific committee including ANMPI, SNMI & EANM"
-      ],
-      "work_experience": [
-        "• Galaxy Vidarbha Diagnostic Centre, Nagpur• Sri-Aurobindo Medical College & Research Centre, Indore• HCG, Vadodara, Gujarat"
-      ],
-      "areas_of_interest": [
-        "Radionuclide therapies & Diagnosis (Theranostics), especially in Oncology & Endocrinology with Whole body PET-CT & SPECT-CT scan interpretation"
-      ]
+      "education_training": [],
+      "work_experience": [],
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Yashwant Kashyap",
@@ -216,9 +204,7 @@
         "Head of Department & Assistant Professor of Medical Oncology, AIIMS, Raipur",
         "Specialist Senior Registrar Medical Oncology, Tata Memorial Hospital, Mumbai"
       ],
-      "areas_of_interest": [
-        "Breast Cancers, Lung Cancers, Gastrointestinal Cancers, Leukemia, Multiple Myeloma"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Dibyendu De",
@@ -244,9 +230,7 @@
         "Indian Myeloma group",
         "Founder Member and Secretary: Chhattisgarh Hematology Association"
       ],
-      "areas_of_interest": [
-        "Leukaemia, Lymphoma, Multiple Myeloma, Anemia including Sickle cell anaemia & bleeding disorder"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Shravan Nadkarni",
@@ -265,9 +249,7 @@
         "Specialist Registrar, Surgical Oncology at Tata Memorial Centre, Mumbai, Maharashtra",
         "Junior Resident Surgeon at Sawai Man Singh Medical College & Hospital, Jaipur,  Rajasthan"
       ],
-      "areas_of_interest": [
-        "Advanced Laparoscopic and Robotic Gastrointestinal Oncosurgery"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Rajendra Prasad Patel",
@@ -283,12 +265,7 @@
         "Senior Resident, BALCO Medical Center, VMRF - Naya Raipur, CG",
         "Senior Registrar, Regional Cancer Center, Pt. J. N. M. Medical College - Raipur, CG"
       ],
-      "areas_of_interest": [
-        "EBRT - IGRT, 2DRT, 3DCRT, IMRT AND VMAT",
-        "•Brachytherapy as ICRT, Interstitial And MUPIT",
-        "•Chemotherapy and Targeted Therapy In Oncology",
-        "•Pain and Palliative Care"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Neelesh Jain",
@@ -302,12 +279,8 @@
         "Fellowship in Transfusion Medicine at Tata Medical Centre, Kolkata, West Bengal",
         "Membership in various academic societies like International Society of Blood Transfusion (ISBT), Indian Society of Haematology & Blood Transfusion (ISHBT), Asian Association of Transfusion Medicine (AATM), Indian Society of Transfusion Medicine (ISTM)"
       ],
-      "work_experience": [
-        "• AMRI Hospital, Mukundpur, Kolkata• DKMS Life Science Lab, India (A subsidiary of German Bone Marrow Donor Registry)"
-      ],
-      "areas_of_interest": [
-        "Immunohaematology and Transplant Immunology, Donor & Therapeutic-Apheresis, Blood-component Therapy, Thalassemia and Sickle Cell Anaemia"
-      ]
+      "work_experience": [],
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Dipanjan Biswas",
@@ -323,33 +296,16 @@
         "Tata Memorial Hospital, Mumbai",
         "Homi Bhabha Cancer Hospital, Sangrur"
       ],
-      "areas_of_interest": [
-        "Head & neck, Genitourinary, Breast, Gastrointestinal and Thoracic Oncology.",
-        "Minimal invasive/ Laparoscopic surgery."
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Ruchi Aujla",
       "profile_url": "https://www.balcomedicalcentre.com/doctors/dr-ruchi-aujla",
       "position": "Sr. Consultant Paediatric Oncology",
       "qualification": "MD Paediatrics, DCH (UK), MRCPCH (UK), Fellowship Paediatric Oncology (UK)",
-      "education_training": [
-        "•​MBBS and MD (Paed), Gandhi Medical College, Bhopal",
-        "• MRCPCH, London Deanery, UK",
-        "• Fellowship Paediatric Haemato-oncology, Alder Hey Children's Hospital, Liverpool, UK",
-        "Membership:",
-        "Indian Academy of Paediatrics (IAP)",
-        "IAP Paediatric Haemato oncology (IPHO)",
-        "Royal College of Paediatrics (RCPCH)",
-        "Childhood Cancer Leukaemia Group (CCLG UK)",
-        "International Society of Paediatric Oncology (SIOP)"
-      ],
-      "work_experience": [
-        "• NHS Hospitals, U.K• Shree Narayan Hospital, Raipur"
-      ],
-      "areas_of_interest": [
-        "Paediatric haemato-oncology and all solid tumors"
-      ]
+      "education_training": [],
+      "work_experience": [],
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Sandeep Ojha",
@@ -369,9 +325,7 @@
         "Tata Memorial Hospital",
         "Chirayu Medical College and Hospital, Bhopal"
       ],
-      "areas_of_interest": [
-        "Histopathology, Cytopathology, Immunohistochemistry, Haematology"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Shreshtha Tiwari",
@@ -383,42 +337,26 @@
         "Member of Hospital Infection Society of India, Indian Association of Medical Microbiology and Chhattisgarh association of Medical Microbiologists",
         "Multiple courses and certificate programs in infection control and antimicrobial stewardship organized by CMC Vellore and Shankara Nethralaya Chennai, British Society of antimicrobial Chemotherapy"
       ],
-      "work_experience": [
-        "Senior Resident at AIIMS, Bhopal"
-      ],
-      "areas_of_interest": [
-        "Infection Prevention and Control, Antimicrobial and Diagnostic Stewardship, Antimicrobial Resistance and Mycology, Mycobacteriology and Molecular Diagnostics and Quality assurance program in Lab services"
-      ]
+      "work_experience": [],
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Santosh Tharwani",
       "profile_url": "https://www.balcomedicalcentre.com/doctors/dr-santosh-tharwani",
       "position": "Senior Consultant, Anaesthesia and Critical Care",
       "qualification": "MD (Anaesthesiology), PDCC (Pain & Palliative care)",
-      "education_training": [
-        "• Post-graduation from Banaras Hindu University, Varanasi• Post-doctoral Fellowship PDCC course in Pain & Palliative Care from BHU, Varanasi"
-      ],
-      "work_experience": [
-        "• Pt JNM Medical College, Raipur"
-      ],
-      "areas_of_interest": [
-        "Anaesthesiology with special interest in Interventional Pain and Palliative care"
-      ]
+      "education_training": [],
+      "work_experience": [],
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Shilpa L Meshram",
       "profile_url": "https://www.balcomedicalcentre.com/doctors/dr-shilpa-l-meshram",
       "position": "Sr. Consultant, Anaesthesia, Critical Care, Pain & Palliative care",
       "qualification": "MBBS, DA (Anaesthesia), PDCC (Neuroanaesthesia), IAPC",
-      "education_training": [
-        "• MBBS and DA (Anaesthesiology) from MUHS, Nashik, Maharashtra• PDCC (Neuroanaesthesiology) from AYUSH University, Raipur, Chhattisgarh"
-      ],
-      "work_experience": [
-        "• IGMC, Nagpur• Pt. JNM Sawangi, Wardha, Maharashtra• Pt. JNM, Raipur• AIIMS, Raipur"
-      ],
-      "areas_of_interest": [
-        "Neuroanaesthesiology, Oncoanaesthesiology, Intensive Care, Pain and Palliative Care"
-      ]
+      "education_training": [],
+      "work_experience": [],
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Srishti Srivastava",
@@ -436,21 +374,15 @@
         "Registrar/ Senior Resident at All India Institute of Medical Sciences, Raipur",
         "Registrar/ Senior Resident at All India Institute of Medical Sciences, Bhopal"
       ],
-      "areas_of_interest": [
-        "Pediatric Hematology, Pediatric Oncology and Pediatric BMT"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Lade Gaurav",
       "profile_url": "https://www.balcomedicalcentre.com/doctors/dr-lade-gaurav",
       "position": "Consultant Radiology",
       "qualification": "MBBS, MD (Radiology)",
-      "education_training": [
-        "MBBS from Amrita School of Medical Sciences, KeralaMD from Gujarat Cancer & Research Institute, BJ Medical College, Gujarat"
-      ],
-      "work_experience": [
-        "Shree Narayana Hospital, RaipurSanjeevani Cancer Hospital, Raipur"
-      ],
+      "education_training": [],
+      "work_experience": [],
       "areas_of_interest": []
     },
     {
@@ -467,9 +399,7 @@
         "Senior Resident at Dr Ram Manohar Lohia Hospital, New Delhi and Safdarjung Hospital, Delhi",
         "Medical Oncology Trainee at Metro Hospital & Cancer Institute,      Delhi"
       ],
-      "areas_of_interest": [
-        "All types of Cancer, Solid Cancer and Hematologic Malignancies."
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Yusuf Malik",
@@ -485,24 +415,16 @@
         "Assistant Professor at Pravara Institue of Medical Sciences, Loni, Maharashtra",
         "Senior Resident at Pravara Institute of Medical Sciences (PIMS), Loni, Maharashtra"
       ],
-      "areas_of_interest": [
-        "Advanced Radiotherapy techniques such as SRS, SBRT, Rapid arc, Image Guided Radiotherapy (IGRT), Intensity modulated Radiotherapy (IMRT), 3D-CRT, 3D Brachytherapy in Gynaecoloical malignancies"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Dipmalya Chatterjee",
       "profile_url": "https://www.balcomedicalcentre.com/doctors/dr-dipmalya-chatterjee",
       "position": "Consultant, Surgical Oncology",
       "qualification": "MBBS, MS, M.Ch (Plastic Surgery)",
-      "education_training": [
-        "• MBBS from Calcutta Medical College• MS General Surgery from NRS Medical College, Kolkata• M.Ch Plastic Surgery from RG Kar Medical College, Kolkata• Advanced training in Head & Neck Reconstruction from Amrita Institute of Medical Sciences, Kochi• Visiting Scholar in Reconstructive Microsurgery in Chang Gung Memorial Hospital, TaiwanMember of Association of Plastic Surgeons of India (APSI)"
-      ],
-      "work_experience": [
-        "• RG Kar Medical College, Kolkata• Desun Hospital, Kolkata• Peerless Hospital, Kolkata"
-      ],
-      "areas_of_interest": [
-        "• Head and Neck Reconstruction• Breast Oncoplasty• Breast Reconstruction• Chest wall Reconstruction• Abdominal wall Reconstruction• Penile Reconstruction• Microvascular Reconstruction• Vascular Surgery• Limb Reconstruction• Limb Preservation Surgery• Sarcoma and soft tissue Reconstruction• Breast reduction and mastopexy• Breast Augmentation• Abdominoplasty• Scar revision surgery• Keloid correction• Secondary Reconstruction in Cancer"
-      ]
+      "education_training": [],
+      "work_experience": [],
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Vivek Baghel",
@@ -538,9 +460,7 @@
         "North Railway Central Hospital (NRCH), Connaught palace, New Delhi",
         "Dr. Bhimrao Ambedkar Memorial Hospital, Govt of Chhattisgarh, Raipur"
       ],
-      "areas_of_interest": [
-        "Anaesthesiology, Critical care specialist, code blue team trainer, basic and advanced cardiac life support, Airway management"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Noopur Priya",
@@ -568,9 +488,7 @@
         "Junior doctor in District Hospital, Korba (C.G.)",
         "JR in AICU, CIMS Bilaspur (C.G.)"
       ],
-      "areas_of_interest": [
-        "Disease Management, Internal Medicine, Critical care and Emergency Medicine, Preventive Health and Early Detection of Disease"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. NIKHIL JAIN",
@@ -584,24 +502,16 @@
       "work_experience": [
         "MKCG Medical College, Berhampur, Odisha"
       ],
-      "areas_of_interest": [
-        "Histopathology"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Rashmi Rai",
       "profile_url": "https://www.balcomedicalcentre.com/doctors/dr-rashmi-rai",
       "position": "Consultant, Surgical Oncology",
       "qualification": "BDS, MDS (Oral & Maxillofacial Surgery), FIBCSOMS (Head & Neck)",
-      "education_training": [
-        "• Post-graduation in Oral & Maxillofacial Surgery from Sri Aurobindo College of Dentistry, Indore• Member of Association of Oral & Maxillofacial Surgery of India and Indian Association of Facial Aesthetics• Fellow of the International Board for the Certification of Specialists in Oral and Maxillofacial Surgery & Head & Neck Surgery (FIBCSOMS-H&N)"
-      ],
-      "work_experience": [
-        "• Sri Aurobindo College of Dentistry, Indore• Himalaya Cancer Hospital, Baroda"
-      ],
-      "areas_of_interest": [
-        "Maxillofacial Surgery, Head & Neck Onco Surgery, Facial Aesthetic Procedures, Dental Implantology & Oral Rehabilitation"
-      ]
+      "education_training": [],
+      "work_experience": [],
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Rudra Pratap Singh Thakur",
@@ -619,9 +529,7 @@
         "Senior Resident, All India Institute of Medical sciences, Raipur.",
         "Specialist Registrar, Tata Memorial Hospital, Mumbai"
       ],
-      "areas_of_interest": [
-        "Resections and Reconstruction for various bone tumors, Megaprosthesis Reconstruction Surgeries, Soft Tissue Sarcoma Excision, Management of Benign Bone tumors, Rotationplasty and Complex amputations, Biological reconstructions- Cryotherapy & ECRT, Pelvic resection and reconstructions, Management of long bone and spinal metastatic diseases, Biopsy of Bone and Soft tissue tumors, Computer Navigation assisted tumor surgeries, Non-invasive and Invasive Expandable Prosthesis."
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Deepshikha Parakh",
@@ -638,9 +546,7 @@
         "Laboratory consultant pathologist, Central Laboratory at Sri Sathya Sai Sanjeevani Hospital, Nava Raipur, Chhattisgarh.",
         "Oncopathology fellowship resident at Bhagwan Mahaveer Cancer Hospital and Research Centre, Jaipur, Rajasthan"
       ],
-      "areas_of_interest": [
-        "Histopathology, Cytopathology, Immunohistochemistry,Oncopathology,Hematology,Flowcytometry"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Sateesh Kumar Atmakuri",
@@ -685,9 +591,7 @@
         "Medanta Hospital, Patna, Bihar",
         "AIIMS, Raipur, Chhattisgarh"
       ],
-      "areas_of_interest": [
-        "Precision Radiotherapy techniques such as Rapid Arc, IGRT, IMRT, SRS/SRT/SBRT and Brachytherapy"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Arti Gupta",
@@ -702,9 +606,7 @@
         "Senior Resident in Department of Neuropathology, Super Speciality Hospital, NSCB Medical College Jabalpur, Madhya Pradesh",
         "Senior Resident in Department of Pathology, AIIMS, Patna, Bihar"
       ],
-      "areas_of_interest": [
-        "Histopathology, Cytology, Clinical Pathology"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Palak Agrawal",
@@ -760,9 +662,7 @@
         "Specialist in Critical Care, Tata Main Hospital, Jamshedpur, Jharkhand",
         "Medical Officer in Dept. Of Anaesthesiology, Central Hospital, Bharat Coaking Coal Limited (BCCL), Dhanbad, Jharkhand"
       ],
-      "areas_of_interest": [
-        "Anaesthesiology with special interest in Interventional Pain and Palliative care"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Nilima Das",
@@ -778,9 +678,7 @@
         "Junior Consultant, NHMMI Hospital, Raipur, Chhattisgarh",
         "Senior Resident, GB Pant Hospital, Delhi"
       ],
-      "areas_of_interest": [
-        "Pain management post general surgeries, opthalmic surgeries, neurosurgeries, cardio thoracic surgeries and gynaecological surgeries"
-      ]
+      "areas_of_interest": []
     },
     {
       "name": "Dr. Ishita Katyal",
