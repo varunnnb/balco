@@ -1,0 +1,79 @@
+{
+  "about": {
+    "title": "Welcome to BALCO Medical Centre",
+    "subtitle": "A Premier Cancer Hospital",
+    "description": "Balco Medical Centre (BMC), a 170 bedded state-of-the-art tertiary care Oncology facility in Naya Raipur, is the first flagship initiative of Vedanta Medical Research Foundation (VMRF). VMRF, a non-profit organization, is an initiative of Vedanta Resources and Bharat Aluminium Company Ltd. (BALCO) to contribute towards prevention of cancer and its related illnesses. BMC has brought ultra-modern, multi-modality diagnostic and therapeutic facilities within easy reach of India’s population at an affordable cost. Currently, it is fast emerging as a national leader in India’s oncology space including medical, surgical, radiation, haematological and palliative care."
+  },
+  "mission_vision_values": [
+    {
+      "type": "mission",
+      "content": "To provide affordable, world-class cancer care to all. By achieving state-of the-art medical and research environments, our facilities will bring ultra-modern, multi-modality diagnostic and therapeutic facilities within easy reach of the population at a reasonable and affordable cost."
+    },
+    {
+      "type": "vision",
+      "content": "We envisage a society where everybody lives free from cancer, for life. A society where children don't grow up without parents, where husbands and wives don't suffer the premature loss of a partner, and where lives are lived long and to the fullest"
+    },
+    {
+      "type": "values",
+      "content": "Our values are our guide to how we behave, interact, and deliver every day for our team, our partners and most importantly, our patients > Trust and Transparency > Excellence > Humility > Nurture > Empathy > Learning"
+    }
+  ],
+  "leaders": [
+    {
+      "name": "ANIL AGARWAL",
+      "role": "Chairman - Vedanta Resources",
+      "description": "A first-generation industrialist, Anil Agarwal has built Vedanta into a globally diversified natural resources group committed to sustainable development.Throughout his career he has fostered a work philosophy that marries stakeholder value with inclusive growth of local communities. Vedanta group companies have supported over 4,00,000 women and children through education, nutrition and empowerment programmes. Additionally, hospitals, mobile health centres, and rural health posts supported by the group have provided healthcare for another 2.2 million people. Mr. Agarwal now intends to expand this medical support through the Vedanta Cancer Hospital and Research Centre.",
+      "image": "https://www.balcomedicalcentre.com/package/images/about-page/facebook.png",
+      "social_links": [
+        "https://twitter.com/anilagarwal_ved?s=21&t=S2rIc6fjnqEwtg6EDE-3MA",
+        "https://www.linkedin.com/in/anilagarwal-ved",
+        "https://www.facebook.com/anilagarwal.thegreatergood?mibextid=LQQJ4d"
+      ]
+    },
+    {
+      "name": "JYOTI AGARWAL",
+      "role": "Chairperson - Vedanta Medical Research Foundation",
+      "description": "For over 20 years, Mrs. Jyoti Agarwal has been involved in the delivery of sustainable solutions that make a genuine difference to individuals and society. An experienced, strategic philanthropist, she has played a lead role in building the Sterlite Tech Foundation and the Agarwal family trust by combining her passion for empowerment and upliftment with a rigorous approach to driving impact. Mrs. Agarwal spearheaded the development of BALCO Medical Centre. Her vision has been critical in driving the Centre's ambition to create a world class oncology facility that provides superior-quality treatment at an affordable price for all.",
+      "image": "https://www.balcomedicalcentre.com/package/images/about-page/facebook.png",
+      "social_links": [
+        "https://twitter.com/anilagarwal_ved?s=21&t=S2rIc6fjnqEwtg6EDE-3MA",
+        "https://www.linkedin.com/in/anilagarwal-ved",
+        "https://www.facebook.com/anilagarwal.thegreatergood?mibextid=LQQJ4d"
+      ]
+    },
+    {
+      "name": "Dr. Bhawna Sirohi",
+      "role": "MD - Vedanta Medical Research Foundation",
+      "description": "Dr. Bhawna Sirohi is a world renowned Medical Oncologist with more than 25 years of experience in the treatment of Cancer. An illustrious doctor who is passionate about creating a system of providing high-quality healthcare that is both affordable and sustainable. Her vision for BALCO Medical Centre is that of a world class oncology institute that is accessible to all, evidence based and serves the community with empathy. An institute that can build faith and provide hope of a healthy tomorrow locally, regionally and nationally.",
+      "image": "https://www.balcomedicalcentre.com/package/images/about-page/instagram.png",
+      "social_links": [
+        " https://twitter.com/SirohiBhawna",
+        " https://www.facebook.com/people/Dr-Bhawna-Sirohi/100064252142873/",
+        " https://www.linkedin.com/in/bhawna-sirohi-17670311/"
+      ]
+    }
+  ],
+  "contacts": {
+    "phones": [
+      "0771-2237575",
+      "+91 8282823333",
+      "+91 8282824444"
+    ],
+    "emails": [
+      "info.vmrf@vedanta.co.in",
+      "careers.vmrf@vedanta.co.in"
+    ],
+    "timings": [
+      "OPD Services : Mon-Sat,09:00-17:30",
+      "IPD & Emergency services : 24 Hrs"
+    ]
+  },
+  "social_media": [
+    "https://twitter.com/BalcoMedical/",
+    "https://in.linkedin.com/company/balcomedicalcentre",
+    "https://www.facebook.com/BALCOMedical/",
+    "https://www.youtube.com/channel/UCjcmTU8rE1rKzDvNnL3dakg",
+    "https://www.instagram.com/balcomedical/"
+  ],
+  "address": "Balco Medical Centre, Vedanta Medical Research Foundation, Sector 36, Atal Nagar, PO: Uparwara, Raipur, Chhattisgarh 493661"
+}

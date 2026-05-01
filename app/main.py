@@ -37,10 +37,27 @@ data_path = project_root/"data"/"processed"/"departments_cleaned.json"
 doctor_data_path = project_root/"data"/"processed"/"doctors_data.json"
 
 # load data (only for listing departments)
+facility_data_path = project_root/"data"/"processed"/"facilities_cleaned.json"
 with open(data_path, encoding="utf-8") as f:
     data = json.load(f)
 with open(doctor_data_path, encoding="utf-8") as f:
     doctor_data = json.load(f)
+with open(facility_data_path, encoding="utf-8") as f:
+    facility_data = json.load(f)
+
+about_data_path = project_root/"data"/"processed"/"about.json"
+
+with open(about_data_path, encoding="utf-8") as f:
+    about_data = json.load(f)
+
+daycare_data_path = project_root/"data"/"processed"/"daycare.json"
+health_library_path = project_root/"data"/"processed"/"health_library_cleaned.json"
+
+with open(daycare_data_path, encoding="utf-8") as f:
+    daycare_data = json.load(f)
+
+with open(health_library_path, encoding="utf-8") as f:
+    health_library_data = json.load(f)
 
 # ✅ connect to Chroma DB
 chroma_path = project_root/"chroma_db"
@@ -75,7 +92,7 @@ Question:
 
     try:
         response = client_groq.chat.completions.create(
-            model="groq/compound-mini",  # fast + good
+            model="openai/gpt-oss-120b",  # fast + good
             messages=[
                 {"role": "user", "content": prompt}
             ],
@@ -145,6 +162,10 @@ doctor_keywords = ["doctor", "doctors", "specialist", "physician", "consultant",
 treatment_keywords = ["treat", "treatment", "cancer", "disease", "therapy"]
 list_keywords = ["list", "who are", "show", "all"]
 best_keywords = ["best", "top", "recommended", "good"]
+facility_keywords = ["room", "facility", "facilities", "ward", "cafeteria", "services"]
+about_keywords = ["about", "hospital", "mission", "vision", "contact", "address", "location", "timings"]
+daycare_keywords = ["daycare", "chemotherapy", "chemo", "infusion"]
+health_keywords = ["health", "article", "library", "symptoms", "prevention", "disease info"]
 
 @app.get("/chat")
 def chat(q: str, session_id: str = "default"):
@@ -190,6 +211,20 @@ def chat(q: str, session_id: str = "default"):
             break
 
 
+    # 🔥 Facility name boosting (direct and partial matches)
+    for fac in facility_data.get("facilities", []):
+        fname = fac.get("name", "").lower()
+        if fname and fname in q_lower:
+            boosted_query += " " + fac.get("name", "")
+            break
+
+    for fac in facility_data.get("facilities", []):
+        name_lower = fac.get("name", "").lower()
+        if any(part in q_lower for part in name_lower.split()):
+            boosted_query += " " + fac.get("name", "")
+            break
+
+
     # ✅ INTENT 1: list departments
     if any(x in q_lower for x in ["list departments", "all departments", "what departments"]):
         names = [d["name"] for d in data["departments"]]
@@ -207,19 +242,37 @@ def chat(q: str, session_id: str = "default"):
     is_treatment_query = any(x in q_lower for x in treatment_keywords)
     is_list_query = any(x in q_lower for x in list_keywords)
     is_best_query = any(x in q_lower for x in best_keywords) and is_doctor_query
-
+    is_facility_query = any(x in q_lower for x in facility_keywords)
+    is_about_query = any(x in q_lower for x in about_keywords) and not is_doctor_query
+    is_daycare_query = any(x in q_lower for x in daycare_keywords)
+    is_health_query = any(x in q_lower for x in health_keywords)
 
     # ✅ STEP: semantic retrieval (top 3)
+    # 🔹 Additional boosting for daycare and health library
+    if is_daycare_query:
+        boosted_query += " BMC Cancer Daycare chemotherapy treatment"
+
+    for article in health_library_data.get("articles", []):
+        title = article.get("title", "").lower()
+        if title and any(word in q_lower for word in title.split() if len(word) > 3):
+            boosted_query += " " + article.get("title", "")
+            break
+
     # 🔥 DIRECT NAME MATCH (highest priority)
     if matched_doctor_name:
         results = retrieve(matched_doctor_name, filter_type="doctor")
-
-    elif is_doctor_query or is_treatment_query:
-        results = retrieve(boosted_query, filter_type="doctor")
-
     elif is_best_query:
         results = retrieve(boosted_query, filter_type="doctor")
-
+    elif is_doctor_query or is_treatment_query:
+        results = retrieve(boosted_query, filter_type="doctor")
+    elif is_daycare_query:
+        results = retrieve(boosted_query, filter_type="daycare")
+    elif is_health_query:
+        results = retrieve(boosted_query, filter_type="health_library")
+    elif is_facility_query:
+        results = retrieve(boosted_query, filter_type="facility")
+    elif is_about_query:
+        results = retrieve(boosted_query, filter_type="about")
     else:
         results = retrieve(boosted_query)
 
@@ -227,21 +280,40 @@ def chat(q: str, session_id: str = "default"):
     distances = results.get("distances", [[]])[0]
 
 
-    if not distances or min(distances) > 1.2:
+    if not distances or min(distances) > 1.7:
 
-        response = {
-            "response": "I couldn’t find exact info. You can ask about doctors, departments, treatments, or specific specialists."
-    }
-        cache[key] = response
+        # 🔥 fallback to general search (no filter)
+        fallback_results = retrieve(q_context)
 
-        if len(cache) > CACHE_LIMIT:
-            cache.popitem(last=False)
-        return response
+        # try to extract docs/metas from fallback
+        fallback_docs = fallback_results.get("documents", [[]])[0] if fallback_results else []
+        fallback_metas = fallback_results.get("metadatas", [[]])[0] if fallback_results else []
+
+        # If fallback also yields nothing, return a helpful message
+        if not fallback_docs:
+            response = {
+                "response": "I couldn’t find exact info. You can ask about doctors, departments, treatments, or hospital details."
+            }
+            cache[key] = response
+
+            if len(cache) > CACHE_LIMIT:
+                cache.popitem(last=False)
+
+            return response
+
+        # otherwise use fallback results and continue processing
+        results = fallback_results
+        docs = fallback_docs
+        metas = fallback_metas
+
+    
     
 
 
-    docs = results["documents"][0]
-    metas = results["metadatas"][0]
+    # ensure docs/metas are set (may have been set by fallback above)
+    if 'docs' not in locals():
+        docs = results["documents"][0]
+        metas = results["metadatas"][0]
 
     if is_best_query:
 
@@ -298,13 +370,46 @@ def chat(q: str, session_id: str = "default"):
             cache.popitem(last=False)
 
         return response
+    # ✅ INTENT 3a: Daycare query (use LLM with retrieved context)
+    if is_daycare_query:
+
+        answer = ask_llm(context, q)
+
+        response = {"response": answer}
+        cache[key] = response
+
+        if len(cache) > CACHE_LIMIT:
+            cache.popitem(last=False)
+
+        return response
+
+    # ✅ INTENT 3b: Health library query (use LLM with retrieved context)
+    if is_health_query:
+
+        answer = ask_llm(context, q)
+
+        response = {"response": answer}
+        cache[key] = response
+
+        if len(cache) > CACHE_LIMIT:
+            cache.popitem(last=False)
+
+        return response
 
     # ✅ INTENT 3: LLM answer
     answer = ask_llm(context, q)
 
     response = {
         "response": answer,
-        "matched_departments": [m["name"] for m in metas]
+        "matched_departments": [
+            m.get("name")
+            for m in metas
+            if m.get("name")
+        ],
+        "matched_sources": [
+            m.get("name") or m.get("title") or m.get("section") or m.get("type")
+            for m in metas
+        ]
     }
     cache[key] = response
 

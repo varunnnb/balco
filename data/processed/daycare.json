@@ -1,0 +1,76 @@
+{
+  "overview": "Welcome to the BMC Cancer Daycare, your premier destination for comprehensive cancer care in Central India. BMC Cancer Daycare, a unit of Vedanta Medical Research foundation is a specialised Chemotherapy Centre situated in the heart of Raipur City in Chhattisgarh. We offer a 360-degree approach to promoting wellness among patients undergoing chemotherapy. Our centre is equipped with eight units, featuring state-of-the-art facilities. Experienced oncologists and specialized oncology nurses ensure that each patient receives the highest quality of care tailored to their unique needs. The thematic ambience of BMC Cancer Daycare is designed to create a soothing experience for patients, with every room featuring abundant natural lighting. As Central India's largest and most advanced cancer institute, BALCO Medical Centre in Naya Raipur will serve as the main hub, providing 24-hour cancer care services. Skilled team of oncologists and state-of-the-art equipment will facilitate advanced surgeries, chemotherapy, radiation therapy, PET scan and all other scans in nuclear medicine for cardiac, neuro and nephrology care, radio-iodine treatment, Lutetium therapy, PSMA therapy, 5-bedded bone marrow transplant facility, ICU facilities, minimally invasive surgeries, pain and palliative care, and 24/7 lab services, blood bank, pharmacy, call centre, and emergency services. Welcome to the BMC Cancer Daycare, your premier destination for comprehensive cancer care in Central India. BMC Cancer Daycare, a unit of Vedanta Medical Research foundation is a specialised Chemotherapy Centre situated in the heart of Raipur City in Chhattisgarh. We offer a 360-degree approach to promoting wellness among patients undergoing chemotherapy. Our centre is equipped with eight units, featuring state-of-the-art facilities. Experienced oncologists and specialized oncology nurses ensure that each patient receives the highest quality of care tailored to their unique needs. The thematic ambience of BMC Cancer Daycare is designed to create a soothing experience for patients, with every room featuring abundant natural lighting. As Central India's largest and most advanced cancer institute, BALCO Medical Centre in Naya Raipur will serve as the main hub, providing 24-hour cancer care services. Skilled team of oncologists and state-of-the-art equipment will facilitate advanced surgeries, chemotherapy, radiation therapy, PET scan and all other scans in nuclear medicine for cardiac, neuro and nephrology care, radio-iodine treatment, Lutetium therapy, PSMA therapy, 5-bedded bone marrow transplant facility, ICU facilities, minimally invasive surgeries, pain and palliative care, and 24/7 lab services, blood bank, pharmacy, call centre, and emergency services.",
+  "services": [
+    "Outpatient Consultation – Oncology",
+    "Immunotherapy",
+    "Chemotherapy",
+    "Targeted therapy",
+    "Pharmacy",
+    "Cytotoxic Drug Mixing Cabinet",
+    "Private Wards with – Recliners and Bed",
+    "Supportive Care",
+    "Sample and Report Collection"
+  ],
+  "booking": {
+    "info": "To book an appointment, please call us at 8282823333/4444 or visit our centre.",
+    "phones": [
+      "8282824444"
+    ]
+  },
+  "why_visit": [
+    {
+      "title": "Care Closer to Home",
+      "description": "Situated in the heart of Raipur city, BMC Cancer Daycare offers easy connectivity, making comprehensive cancer care accessible for local and outstation patients."
+    },
+    {
+      "title": "Minimal Waiting Period",
+      "description": "With the introduction of a pre-medicine indent system, medication kits and doses are prepared in advance for prompt administration during chemotherapy appointments. Moreover, discharge plans and patient summaries are prepared well in advance for a hassle-free experience."
+    },
+    {
+      "title": "Reduced Risk of Hospital-acquired Infections",
+      "description": "Chemotherapy patients, often with compromised immune systems, face heightened risks of infections. While hospitals typically have infection control measures, they still pose certain risks. At BMC Cancer Daycare, dedicated solely to chemotherapy patients, stringent hygiene practices are followed, significantly reducing the likelihood of hospital-acquired infections."
+    },
+    {
+      "title": "Patient-centric Approach",
+      "description": "We're here to walk you through your chemotherapy journey, its side effects, and its impact on your life, always keeping communication open. Your well-being and comfort are our top priorities, with care personalized to your needs and preferences."
+    },
+    {
+      "title": "No Disruption to Daily Routine",
+      "description": "Minimal disruption to patients' and their caretakers' daily routines, allowing them to maintain a sense of normalcy during treatment."
+    },
+    {
+      "title": "Thematic Ambience",
+      "description": "Soothing and pleasant atmosphere featuring abundant natural lighting designed to promote healing and well-being during your visits. Each unit is equipped with a TV for recreation during treatment sessions."
+    },
+    {
+      "title": "In-House Cafe",
+      "description": "Enjoy a variety of refreshments at our in-house cafe while waiting for your appointment, or your caretakers can relax and enjoy a meal."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How can I prepare myself for chemotherapy session?",
+      "answer": "Before starting chemotherapy, your doctor will discuss the treatment plan with you and answer any questions you may have. It's important to eat a healthy diet, stay hydrated, and get plenty of rest. Additionally, wearing comfortable clothes is recommended, and some people feel chilly during treatment, so it's a good idea to bring along something warm to wear."
+    },
+    {
+      "question": "Will I have to stay overnight at the daycare during chemotherapy treatment?",
+      "answer": "At BMC Cancer Daycare, patients can receive treatment and return home on the same day. Each session may take between 1-8 hours, depending upon the treatment plan devised, and the patients may leave once the session is over."
+    },
+    {
+      "question": "Can I bring a family member or friend with me to my appointments at BMC Cancer Daycare?",
+      "answer": "Yes, we encourage patients to bring a family member or friend for support during their appointments. Having a loved one by your side can help alleviate anxiety and provide emotional support during your cancer journey."
+    },
+    {
+      "question": "What are the possible side effects of chemotherapy?",
+      "answer": "Common side effects of chemotherapy include nausea, vomiting, hair loss, anaemia, fatigue, constipation, diarrhoea and increased risk of infections. However, not everyone experience the same side effects, and they can vary depending on the type and dose of chemotherapy drugs used. If you experience severe side effects, please contact us immediately."
+    },
+    {
+      "question": "Where is the BMC Cancer Daycare Situated?",
+      "answer": "BMC Cancer Daycare is located in Pachpedi Naka Road, beside Colours Mall in Gurumukh Singh Nagar, Raipur. Please click here for Google navigation: https://g.co/kgs/QUfHfVa"
+    },
+    {
+      "question": "How can I commute to BMC Cancer Daycare?",
+      "answer": "BMC Cancer Daycare is situated in the heart of the city, offering easy connectivity. Additionally, BALCO Medical Centre provides a 25-seater bus that offers free commute services from Raipur railway station, Mekahara, Pachpedi Naka, Nimora Chowk, and BALCO Medical Centre, Naya Raipur twice everday. Please reach out to us at 8282824444 for further details."
+    }
+  ]
+}

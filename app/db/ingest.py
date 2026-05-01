@@ -22,11 +22,26 @@ collection = client.get_or_create_collection(name="departments")
 # LOAD DATA
 # ================================
 
-with open("departments_cleaned.json", encoding="utf-8") as f:
-    dept_data = json.load(f)
 
-with open("doctors_data.json", encoding="utf-8") as f:
+dept_data_path = project_root/"data"/"processed"/"departments_cleaned.json"
+doctor_data_path = project_root/"data"/"processed"/"doctors_data.json"
+daycare_data_path = project_root/"data"/"processed"/"daycare.json"
+health_library_path = project_root/"data"/"processed"/"health_library_cleaned.json"
+facility_data_path = project_root/"data"/"processed"/"facilities_cleaned.json"
+about_data_path = project_root/"data"/"processed"/"about.json"
+
+with open(dept_data_path, encoding="utf-8") as f:
+    dept_data = json.load(f)
+with open(doctor_data_path, encoding="utf-8") as f:
     doctor_data = json.load(f)
+with open(facility_data_path, encoding="utf-8") as f:
+    facilities_data = json.load(f)
+with open(about_data_path, encoding="utf-8") as f:
+    about_data = json.load(f)
+with open(daycare_data_path, encoding="utf-8") as f:
+    daycare_data = json.load(f)
+with open(health_library_path, encoding="utf-8") as f:
+    health_library_data = json.load(f)
 
 
 # ================================
@@ -153,4 +168,248 @@ Education:
         )
 
 
-print("✅ Departments + Doctors ingested successfully")
+# ================================
+# 🔹 STEP 3: ABOUT
+# ================================
+
+about = about_data.get("about", {})
+
+# ---------- OVERVIEW ----------
+overview = about.get("description", "")
+if overview and overview.strip():
+    text = f"""
+About BALCO Medical Centre:
+{overview}
+""".strip()
+
+    collection.add(
+        documents=[text],
+        metadatas=[{
+            "type": "about",
+            "section": "overview"
+        }],
+        ids=["about_overview"]
+    )
+
+# ---------- MISSION / VISION / VALUES ----------
+for i, item in enumerate(about_data.get("mission_vision_values", [])):
+    content = item.get("content", "")
+    if not content or not content.strip():
+        continue
+
+    text = f"""
+{item.get("type", "").title()}:
+{content}
+""".strip()
+
+    collection.add(
+        documents=[text],
+        metadatas=[{
+            "type": "about",
+            "section": item.get("type", "")
+        }],
+        ids=[f"about_{item.get('type','item')}_{i}"]
+    )
+
+# ---------- CONTACT DETAILS ----------
+contacts = about_data.get("contacts", {})
+phones = contacts.get("phones", [])
+emails = contacts.get("emails", [])
+timings = contacts.get("timings", [])
+address = about_data.get("address", "")
+
+if phones or emails or timings or (isinstance(address, str) and address.strip()):
+    text = f"""
+Contact Details:
+Phones: {", ".join(phones)}
+Emails: {", ".join(emails)}
+
+Hospital Timings:
+OPD Timings: {", ".join(timings)}
+
+Outpatient Department (OPD) Hours:
+{", ".join(timings)}
+
+Opening Hours:
+{", ".join(timings)}
+
+Clinic Timings:
+{", ".join(timings)}
+
+Visiting Hours:
+{", ".join(timings)}
+
+Address: {address}
+""".strip()
+
+    if text.strip():
+        collection.add(
+            documents=[text],
+            metadatas=[{
+                "type": "about",
+                "section": "contact"
+            }],
+            ids=["about_contact"]
+        )
+
+
+# ================================
+# 🔹 STEP 4: FACILITIES
+# ================================
+
+for i, facility in enumerate(facilities_data.get("facilities", [])):
+    desc = facility.get("description", "")
+    if not desc or not desc.strip():
+        continue
+
+    text = f"""
+Facility: {facility.get("name", "")}
+
+Category: {facility.get("category", "")}
+
+Description:
+{desc}
+""".strip()
+
+    collection.add(
+        documents=[text],
+        metadatas=[{
+            "type": "facility",
+            "name": facility.get("name", ""),
+            "category": facility.get("category", "")
+        }],
+        ids=[f"facility_{i}"]
+    )
+
+# ================================
+# 🔹 STEP 5: DAYCARE
+# ================================
+
+overview = daycare_data.get("overview", "")
+
+if overview and isinstance(overview, str) and overview.strip():
+    text = f"""
+BMC Cancer Daycare Overview:
+{overview}
+""".strip()
+
+    collection.add(
+        documents=[text],
+        metadatas=[{
+            "type": "daycare",
+            "section": "overview"
+        }],
+        ids=["daycare_overview"]
+    )
+
+for i, service in enumerate(daycare_data.get("services", [])):
+    if not service or not str(service).strip():
+        continue
+
+    text = f"""
+Daycare Service:
+{service}
+""".strip()
+
+    collection.add(
+        documents=[text],
+        metadatas=[{
+            "type": "daycare",
+            "section": "service"
+        }],
+        ids=[f"daycare_service_{i}"]
+    )
+
+booking = daycare_data.get("booking", {})
+info = booking.get("info", "")
+phones = booking.get("phones", [])
+
+if (info and str(info).strip()) or phones:
+    text = f"""
+Daycare Booking Information:
+{info}
+
+Phone: {", ".join(phones)}
+""".strip()
+
+    collection.add(
+        documents=[text],
+        metadatas=[{
+            "type": "daycare",
+            "section": "booking"
+        }],
+        ids=["daycare_booking"]
+    )
+
+for i, item in enumerate(daycare_data.get("why_visit", [])):
+    title = item.get("title", "")
+    desc = item.get("description", "")
+    if not (title or desc):
+        continue
+
+    text = f"""
+{title}:
+{desc}
+""".strip()
+
+    collection.add(
+        documents=[text],
+        metadatas=[{
+            "type": "daycare",
+            "section": "why_visit"
+        }],
+        ids=[f"daycare_why_{i}"]
+    )
+
+for i, faq in enumerate(daycare_data.get("faq", [])):
+    q = faq.get("question", "")
+    a = faq.get("answer", "")
+    if not (q or a):
+        continue
+
+    text = f"""
+Question: {q}
+Answer: {a}
+""".strip()
+
+    collection.add(
+        documents=[text],
+        metadatas=[{
+            "type": "daycare",
+            "section": "faq"
+        }],
+        ids=[f"daycare_faq_{i}"]
+    )
+
+
+# ================================
+# 🔹 STEP 6: HEALTH LIBRARY
+# ================================
+
+for i, article in enumerate(health_library_data.get("articles", [])):
+    title = article.get("title", "")
+    content = article.get("content", "") or article.get("description", "")
+
+    if not content:
+        continue
+
+    text = f"""
+Health Article: {title}
+
+{content}
+""".strip()
+
+    chunks = chunk_text(text)
+
+    for j, chunk in enumerate(chunks):
+        collection.add(
+            documents=[chunk.strip()],
+            metadatas=[{
+                "type": "health_library",
+                "title": title,
+                "chunk_id": j
+            }],
+            ids=[f"health_{i}_{j}"]
+        )
+
+print("✅ Departments + Doctors + About + Facilities + Daycare + Health Library ingested successfully")

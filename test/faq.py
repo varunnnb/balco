@@ -9,7 +9,7 @@ OUTPUT_FILE = "responses2.csv"    # output file
 API_URL = "http://127.0.0.1:8000/chat?q="
 
 # throttle: 20 questions per minute → 3 sec per request
-DELAY = 5
+DELAY = 30
 
 
 def read_questions(file_path):

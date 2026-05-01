@@ -1,0 +1,70 @@
+{
+  "facilities": [
+    {
+      "category": "Room Type",
+      "name": "General Ward",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/1747814512general-ward.jpg",
+      "description": "The general ward is a spacious, air-conditioned, multi-bed ward consisting of 44 beds. Steps are taken to maintain patient privacy while allowing patients to benefit from more affordable tariffs and still making available all other essential amenities such as common waiting area separate for male and female attendants, television, and individual side lockers and bedside visitor’s chairs, etc."
+    },
+    {
+      "category": "Room Type",
+      "name": "Twin Sharing Room",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/588187206twin-sharing-room.JPG",
+      "description": "In twin sharing rooms, both the beds are partitioned with a curtain to maintain patient privacy. The twin room is equipped with a television and basic amenities for each patient. An attendant couch with storage is also provided for each patient."
+    },
+    {
+      "category": "Room Type",
+      "name": "Private Ward",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/1643638245private-ward.jpg",
+      "description": "Private rooms are designed to meet all the basic requirements for a single patient with accommodation for one attendant with attached bathing facilities. These rooms provide ample space for both the patient and the attendant and are designed with large windows for natural light. Private rooms are equipped with television and an attendant couch with storage."
+    },
+    {
+      "category": "Room Type",
+      "name": "Super Deluxe Rooms",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/1098927458super-deluxe-rooms.jpg",
+      "description": "Deluxe room is designed to give ample space for mobility to the patient and accommodation for one attendant with attached bathing facilities. The ambience of the room is enhanced by the windows that allow abundant natural light and picturesque view. To make you feel comfortable, our deluxe rooms are additionally equipped with a comfortable sofa, mini refrigerator, cupboard, dressing table, kettle, extra storage cabinet, and a centre table."
+    },
+    {
+      "category": "Room Type",
+      "name": "Suite Rooms",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/1173814460suite-rooms.jpg",
+      "description": "Suite accommodation is designed to meet the privacy of patient and their attendants. This room type is a luxury room set with wooden finish that includes facilities like a comfortable sofa, mini refrigerator, cupboard, dressing table, kettle, television, telephone, extra air conditioner, storage cabinet, designer hanging pendant lights and a centre table. Additionally, laundry services and in-room meals and snacks for one attendant are included in the room facilities."
+    },
+    {
+      "category": "Cafeteria",
+      "name": "Eco - friendly Cafeteria",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/648112869eco---friendly-cafeteria.jpg",
+      "description": "Balco Medical Centre has a very clean, picturesque and spacious cafeteria manned by the Food & Beverage (F&B) department. The cafeteria has a comfortable seating capacity for 100 people and serves hygienic and nutritious snacks & meals. The F&B department of Balco Medical Centre is the only one in Chhattisgarh to be awarded Eat Right Campus and 5-star Hygiene Rating by FSSAI."
+    },
+    {
+      "category": "Blood Centre",
+      "name": "Blood Centre",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/603063055blood-centre.JPG",
+      "description": "Balco Medical Centre’s advanced Blood Centre is equipped with many state-of-the-art equipment like Fresenius Comtec Apheresis machine with latest cell separation technology, Refrigerated Centrifuge for precise blood components separation, Deep freezer’s (-80 degree centigrade) for FFP and Cryopreservation, Cryobath for optimal thawing of blood components and stem cells."
+    },
+    {
+      "category": "Free Pick & Drop",
+      "name": "Free Pick & Drop",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/1468120161free-pick-drop.jpg",
+      "description": "Many patients those who’re travelling from outside Raipur and travelling from city to Balco Medical Centre at Naya Raipur, the hospital offers free pick up and drop facility from Raipur City railway station. Additionally, for needy patients, hospital also offers subsidized lodging facility called ‘Sukh Saray’ within the hospital premises."
+    },
+    {
+      "category": "Empanelment",
+      "name": "Empanelment",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/empanelment/empanelment_star.png",
+      "description": ""
+    },
+    {
+      "category": "Patient Support Groups",
+      "name": "Samarth",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/1198092395samarth.JPG",
+      "description": ""
+    },
+    {
+      "category": "Patient Support Groups",
+      "name": "Indradhanush",
+      "image": "https://www.balcomedicalcentre.com/uploads/facility/983337563indradhanush.jpg",
+      "description": "Indradhanush is a support group for the parents of paediatric cancer patients. Group members have the benefit of interacting with hospital’s clinical and support teams to resolve any concern whatsoever and as and when they arise. Beyond this, the support group also meet in an informal setting like an annual Christmas party for kids with cancer. These interactions are valuable in closing the loop of cancer treatment."
+    }
+  ]
+}
