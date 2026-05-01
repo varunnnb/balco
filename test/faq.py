@@ -4,12 +4,12 @@ import requests
 import urllib.parse
 
 # CONFIG
-INPUT_FILE = "hospital_chatbot_queries.csv"      # your input file
-OUTPUT_FILE = "responses2.csv"    # output file
+INPUT_FILE = "balco_hospital_faq_2.csv"      # your input file
+OUTPUT_FILE = "responses3.csv"    # output file
 API_URL = "http://127.0.0.1:8000/chat?q="
 
 # throttle: 20 questions per minute → 3 sec per request
-DELAY = 30
+DELAY = 15
 
 
 def read_questions(file_path):

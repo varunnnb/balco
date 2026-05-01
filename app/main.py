@@ -7,6 +7,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+import redis
+
 current_dir = Path(__file__).resolve().parent
 project_root = current_dir.parent
 
@@ -21,7 +23,15 @@ from fastapi.middleware.cors import CORSMiddleware
 
 client_groq = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-sessions = {}
+# Redis-backed session store
+redis_client = redis.Redis(
+    host="localhost",
+    port=6379,
+    db=0,
+    decode_responses=True,
+)
+
+SESSION_TTL = 1800  # 30 minutes
 
 app = FastAPI()
 
@@ -50,6 +60,10 @@ about_data_path = project_root/"data"/"processed"/"about.json"
 with open(about_data_path, encoding="utf-8") as f:
     about_data = json.load(f)
 
+contacts = about_data.get("contacts", {})
+PHONE_NUMBERS = ", ".join(contacts.get("phones", []))
+fallback_message = f"I don’t have that information. You can contact the hospital at: {PHONE_NUMBERS}"
+
 daycare_data_path = project_root/"data"/"processed"/"daycare.json"
 health_library_path = project_root/"data"/"processed"/"health_library_cleaned.json"
 
@@ -69,6 +83,23 @@ def get_cache_key(q):
     return " ".join(q.lower().strip().split())
 
 
+def get_session(session_id):
+    data = redis_client.get(session_id)
+    if data:
+        try:
+            return json.loads(data)
+        except Exception:
+            pass
+    return {"user": [], "bot": []}
+
+
+def save_session(session_id, session_data):
+    try:
+        redis_client.setex(session_id, SESSION_TTL, json.dumps(session_data))
+    except Exception:
+        pass
+
+
 # ✅ LLM function (improved prompt)
 def ask_llm(context, question):
     prompt = f"""
@@ -80,8 +111,8 @@ Rules:
 - If multiple doctors match, mention their names clearly
 - Do NOT assume anything
 - Do NOT hallucinate or invent information
-- If answer is not found, say "I don't have that information"
-
+- If answer is not found, say "I don’t have that information"
+- End response with a helpful follow-up suggestion.
 
 Context:
 {context}
@@ -103,6 +134,97 @@ Question:
 
     except Exception as e:
         return f"LLM Error: {str(e)}"
+
+
+def generate_base_suggestions(q_lower, metas):
+    types = {m.get("type") for m in (metas or []) if m.get("type")}
+
+    if "doctor" in types:
+        return ["Book appointment", "View doctors", "Contact hospital"]
+    if "department" in types:
+        return ["View doctors", "Book appointment", "Contact hospital"]
+    if "facility" in types:
+        return ["Check rooms", "View facilities", "Contact hospital"]
+    if "daycare" in types:
+        return ["Book chemo", "Daycare timings", "Contact hospital"]
+    if "health_library" in types:
+        return ["Read articles", "View symptoms", "Prevention tips"]
+
+    return ["Find doctors", "Hospital timings", "Contact hospital"]
+
+
+def refine_suggestions_with_llm(base_suggestions, question):
+    if not base_suggestions:
+        return []
+
+    prompt = (
+        "Rewrite these into natural conversational follow-up questions:\n"
+        f"{base_suggestions}\n"
+        "Keep max 3. Short and clear."
+    )
+
+    try:
+        resp = client_groq.chat.completions.create(
+            model="openai/gpt-oss-120b",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3,
+        )
+
+        text = resp.choices[0].message.content.strip()
+
+        # parse into lines
+        lines = [l.strip("- ").strip() for l in text.splitlines() if l.strip()]
+        if not lines:
+            parts = [p.strip() for p in text.replace(";", ",").split(",") if p.strip()]
+            lines = parts
+
+        return lines[:3] if lines else base_suggestions[:3]
+
+    except Exception:
+        return base_suggestions[:3]
+
+
+def finalize_response(resp, metas, q_lower, q, key, session_id):
+    base = generate_base_suggestions(q_lower, metas or [])
+    suggestions = base[:3]
+    if not suggestions:
+        suggestions = base[:3]
+
+    resp["suggestions"] = suggestions
+
+    # backend-driven redirect actions (may override suggestions)
+    try:
+        action = get_redirect_action(q_lower, metas or [])
+        if action:
+            resp["action"] = action
+            resp["suggestions"] = ["Yes, take me there", "No, continue here"]
+    except Exception:
+        pass
+
+    # If contact info is offered as a suggestion, present contact details and remove any redirect
+    if "Contact hospital" in resp.get("suggestions", []):
+        resp["response"] = f"You can contact the hospital at: 0771-XXXXXXX or +91 XXXXX3333"
+        resp.pop("action", None)
+
+    # cache (preserve existing caching behavior)
+    cache[key] = resp
+    if len(cache) > CACHE_LIMIT:
+        cache.popitem(last=False)
+
+    # append bot response to session history (Redis)
+    try:
+        bot_text = resp.get("response")
+        if bot_text:
+            session = get_session(session_id)
+            session.setdefault("bot", [])
+            session.setdefault("user", [])
+            session["bot"].append(bot_text)
+            session["bot"] = session["bot"][-4:]
+            save_session(session_id, session)
+    except Exception:
+        pass
+
+    return resp
 
 
 def retrieve(query, filter_type=None):
@@ -157,6 +279,31 @@ def rank_doctors(metas, query):
     return [name for name, _ in ranked[:3]]
 
 
+def get_redirect_action(q_lower, metas):
+    # Appointment intent
+    if "appointment" in q_lower or "book" in q_lower:
+        return {
+            "type": "redirect",
+            "url": "https://www.balcomedicalcentre.com/appointment"
+        }
+
+    # Doctor page intent
+    if any(m.get("type") == "doctor" for m in metas):
+        return {
+            "type": "redirect",
+            "url": "https://www.balcomedicalcentre.com/doctors"
+        }
+
+    # Department page intent
+    if any(m.get("type") == "department" for m in metas):
+        return {
+            "type": "redirect",
+            "url": "https://www.balcomedicalcentre.com/specialities"
+        }
+
+    return None
+
+
 
 doctor_keywords = ["doctor", "doctors", "specialist", "physician", "consultant", "surgeon"]
 treatment_keywords = ["treat", "treatment", "cancer", "disease", "therapy"]
@@ -172,22 +319,42 @@ def chat(q: str, session_id: str = "default"):
 
     q_lower = q.lower()
 
-    history = sessions.get(session_id, [])
+    # session from Redis
+    session = get_session(session_id)
 
-    # add current query
-    history.append(q)
+    # append user message and keep last 9
+    session.setdefault("user", [])
+    session.setdefault("bot", [])
+    session["user"].append(q)
+    session["user"] = session["user"][-9:]
 
-    # keep only last 3 messages
-    sessions[session_id] = history[-3:]
+    # persist user update so subsequent saves include it
+    try:
+        save_session(session_id, session)
+    except Exception:
+        pass
 
-    q_context = " ".join(history[-2:])
+    # build retrieval context from last 2-3 user messages
+    q_context = " ".join(session["user"][-3:])
+
+    # conversation context for LLM: last 2 bot + last 3 user
+    conversation_context = " ".join(session.get("bot", [])[-2:] + session.get("user", [])[-3:])
 
     key = get_cache_key(q_context)
     if key in cache:
         cache.move_to_end(key)
-        return cache[key]    
+        resp = cache[key]
+        # record bot reply in session and save
+        try:
+            if resp.get("response"):
+                session.setdefault("bot", [])
+                session["bot"].append(resp.get("response"))
+                session["bot"] = session["bot"][-4:]
+                save_session(session_id, session)
+        except Exception:
+            pass
 
-    
+        return resp
 
     boosted_query = q_context
 
@@ -202,14 +369,13 @@ def chat(q: str, session_id: str = "default"):
             matched_doctor_name = doc["name"]
             break
 
-# 🔥 Doctor name boosting (for partial matches)
+    # 🔥 Doctor name boosting (for partial matches)
     for doc in doctor_data["doctors"]:
         name_lower = doc["name"].lower()
 
         if any(part in q_lower for part in name_lower.split()):
             boosted_query += " " + doc["name"]
             break
-
 
     # 🔥 Facility name boosting (direct and partial matches)
     for fac in facility_data.get("facilities", []):
@@ -224,19 +390,12 @@ def chat(q: str, session_id: str = "default"):
             boosted_query += " " + fac.get("name", "")
             break
 
-
     # ✅ INTENT 1: list departments
     if any(x in q_lower for x in ["list departments", "all departments", "what departments"]):
         names = [d["name"] for d in data["departments"]]
 
         response = {"response": ", ".join(names)}
-        cache[key] = response
-
-        if len(cache) > CACHE_LIMIT:
-            cache.popitem(last=False)
-
-        return response
-
+        return finalize_response(response, [], q_lower, q, key, session_id)
 
     is_doctor_query = any(x in q_lower for x in doctor_keywords)
     is_treatment_query = any(x in q_lower for x in treatment_keywords)
@@ -276,9 +435,7 @@ def chat(q: str, session_id: str = "default"):
     else:
         results = retrieve(boosted_query)
 
-
     distances = results.get("distances", [[]])[0]
-
 
     if not distances or min(distances) > 1.7:
 
@@ -291,24 +448,13 @@ def chat(q: str, session_id: str = "default"):
 
         # If fallback also yields nothing, return a helpful message
         if not fallback_docs:
-            response = {
-                "response": "I couldn’t find exact info. You can ask about doctors, departments, treatments, or hospital details."
-            }
-            cache[key] = response
-
-            if len(cache) > CACHE_LIMIT:
-                cache.popitem(last=False)
-
-            return response
+            response = {"response": fallback_message}
+            return finalize_response(response, [], q_lower, q, key, session_id)
 
         # otherwise use fallback results and continue processing
         results = fallback_results
         docs = fallback_docs
         metas = fallback_metas
-
-    
-    
-
 
     # ensure docs/metas are set (may have been set by fallback above)
     if 'docs' not in locals():
@@ -325,11 +471,7 @@ def chat(q: str, session_id: str = "default"):
                 "\n".join([f"- {name}" for name in ranked])
             }
 
-            cache[key] = response
-            if len(cache) > CACHE_LIMIT:
-                cache.popitem(last=False)
-
-            return response
+            return finalize_response(response, metas, q_lower, q, key, session_id)
 
     # combine context
     context = ""
@@ -337,6 +479,9 @@ def chat(q: str, session_id: str = "default"):
     for d in docs:
         if len(context) < 1500:
             context += d + "\n\n"
+
+    # combined context for LLM: conversation context above retrieval context
+    combined_context = conversation_context + "\n\n" + context if conversation_context else context
 
     # ✅ INTENT 2: doctor query
     if is_doctor_query:
@@ -355,49 +500,31 @@ def chat(q: str, session_id: str = "default"):
                 response = {
                     "response": "Relevant doctors:\n" + "\n".join(unique_answers)
                 }
-                cache[key] = response
-                if len(cache) > CACHE_LIMIT:
-                    cache.popitem(last=False)
-
-                return response
+                return finalize_response(response, metas, q_lower, q, key, session_id)
 
         # 👉 CASE 2: informational queries → use LLM
-        answer = ask_llm(context, q)
+        answer = ask_llm(combined_context, q)
 
         response = {"response": answer}
-        cache[key] = response
-        if len(cache) > CACHE_LIMIT:
-            cache.popitem(last=False)
-
-        return response
+        return finalize_response(response, metas, q_lower, q, key, session_id)
     # ✅ INTENT 3a: Daycare query (use LLM with retrieved context)
     if is_daycare_query:
 
-        answer = ask_llm(context, q)
+        answer = ask_llm(combined_context, q)
 
         response = {"response": answer}
-        cache[key] = response
-
-        if len(cache) > CACHE_LIMIT:
-            cache.popitem(last=False)
-
-        return response
+        return finalize_response(response, metas, q_lower, q, key, session_id)
 
     # ✅ INTENT 3b: Health library query (use LLM with retrieved context)
     if is_health_query:
 
-        answer = ask_llm(context, q)
+        answer = ask_llm(combined_context, q)
 
         response = {"response": answer}
-        cache[key] = response
-
-        if len(cache) > CACHE_LIMIT:
-            cache.popitem(last=False)
-
-        return response
+        return finalize_response(response, metas, q_lower, q, key, session_id)
 
     # ✅ INTENT 3: LLM answer
-    answer = ask_llm(context, q)
+    answer = ask_llm(combined_context, q)
 
     response = {
         "response": answer,
@@ -411,9 +538,5 @@ def chat(q: str, session_id: str = "default"):
             for m in metas
         ]
     }
-    cache[key] = response
 
-    if len(cache) > CACHE_LIMIT:
-        cache.popitem(last=False)
-
-    return response
+    return finalize_response(response, metas, q_lower, q, key, session_id)
